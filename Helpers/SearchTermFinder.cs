@@ -25,7 +25,7 @@ namespace ArraySearchPOC.Helpers
                     if (_strTermArr.Length == 1)
                     {
                         var newMention = new Mention { Annotations = new() };
-                        var newAnnotation = new Annotation { PageId = 1, Box = new() };
+                        var newAnnotation = new Annotation { PageId = 1, Box = Array.Empty<int>() };
                         newMention.Annotations.Add(newAnnotation);
                         searchTerm.Value.Add(newMention);
 
@@ -38,7 +38,7 @@ namespace ArraySearchPOC.Helpers
                             // Hit! Create mention. 
                             var newMention = new Mention { Annotations = new() };
                             // Add annotation to mention for each word found. In reality page_id and box coords will be copied from _documentWords object
-                            for (int j = 0; j < _strTermArr.Length - 1; j++) newMention.Annotations.Add(new Annotation{PageId=1, Box = new Box()});
+                            for (int j = 0; j < _strTermArr.Length - 1; j++) newMention.Annotations.Add(new Annotation{PageId=1, Box = Array.Empty<int>()});
                             searchTerm.Value.Add(newMention);
                         }
                     }
