@@ -24,16 +24,21 @@ namespace ArraySearchPOC.Helpers
                     //For single word term - add box
                     if (_strTermArr.Length == 1)
                     {
-                        searchTerm.Value.Add(new Mention { Boxes = new() { new Box() } });
+                        var newMention = new Mention { Annotations = new() };
+                        var newAnnotation = new Annotation { PageId = 1, Box = new() };
+                        newMention.Annotations.Add(newAnnotation);
+                        searchTerm.Value.Add(newMention);
+
                     }
                     else
                     {
                         //For multi word term - seek match for rest of the term
                         if (FindNext(1, i + 1))
                         {
-                            // Hit! Create mention. In reality box coords will be copied from _documentWords object
-                            var newMention = new Mention { Boxes = new() };
-                            for (int j = 0; j < _strTermArr.Length - 1; j++) newMention.Boxes.Add(new Box());
+                            // Hit! Create mention. 
+                            var newMention = new Mention { Annotations = new() };
+                            // Add annotation to mention for each word found. In reality page_id and box coords will be copied from _documentWords object
+                            for (int j = 0; j < _strTermArr.Length - 1; j++) newMention.Annotations.Add(new Annotation{PageId=1, Box = new Box()});
                             searchTerm.Value.Add(newMention);
                         }
                     }
