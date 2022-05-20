@@ -1,14 +1,17 @@
-﻿using System.Text.Json.Serialization;
-
-namespace ArraySearchPOC.Models
+﻿namespace ArraySearchPOC.Models
 {
     public class Annotation
     {
-        [JsonPropertyName("page_id")]
         public int PageId { get; set; } = 0;
-
-        [JsonPropertyName("box")]
-        public int[]? Box { get; set; }
+        public Box Box { get; set; } = new();
     }
 
+    public class Box
+    {
+        public int Left { get; set; } = 0;
+        public int Top { get; set; } = 0;
+        public int Width { get; set; } = 0;
+        public int Height { get; set; } = 0;
+
+    }
 }
